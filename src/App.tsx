@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import TicketsList from "./pages/TicketsList";
+import QuestionPlayer from "./pages/QuestionPlayer";
+import MistakesList from "./pages/MistakesList";
+import MistakesAggregate from "./pages/MistakesAggregate";
+import { Question } from "./types";
 
-function App() {
+const App: React.FC = () => {
+  const [questions, setQuestions] = useState<Question[] | null>(null);
+
+  useEffect(() => {
+    fetch("/questions.json")
+      .then((r) => r.json())
+      .then(setQuestions)
+      .catch((e) => console.error("Не удалось загрузить questions.json", e));
+  }, []);
+
+  if (!questions) return <div>Загрузка вопросов...</div>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/tickets" element={<TicketsList />} />
+      <Route path="/ticket/:id" element={<QuestionPlayer questions={questions} />} />
+      <Route path="/mistaken-questions" element={<QuestionPlayer questions={questions} hideTimer={true} />} />
+      <Route path="/mistakes" element={<MistakesList />} />
+      <Route path="/mistakes-all" element={<MistakesAggregate />} />
+    </Routes>
   );
-}
+};
 
 export default App;
