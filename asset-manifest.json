@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/exam-trainer/static/css/main.c49c54a0.css",
-    "main.js": "/exam-trainer/static/js/main.ab4894da.js",
+    "main.js": "/exam-trainer/static/js/main.4bff56ee.js",
     "index.html": "/exam-trainer/index.html",
     "main.c49c54a0.css.map": "/exam-trainer/static/css/main.c49c54a0.css.map",
-    "main.ab4894da.js.map": "/exam-trainer/static/js/main.ab4894da.js.map"
+    "main.4bff56ee.js.map": "/exam-trainer/static/js/main.4bff56ee.js.map"
   },
   "entrypoints": [
     "static/css/main.c49c54a0.css",
-    "static/js/main.ab4894da.js"
+    "static/js/main.4bff56ee.js"
   ]
 }
